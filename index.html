@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eddie Zce — Licensed Massage Therapist</title>
+    <meta name="description" content="16 years of healing touch. Swedish massage specialist, Ayurveda, Reiki, Thai, Lomi Lomi, Sound Healing. Serving wellness retreats, ecstatic dance, and conscious festivals.">
+
+    <!-- Google Fonts: Cormorant Garamond + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest:       '#2d5a4a',
+                        'forest-dk':  '#1e3d32',
+                        'forest-md':  '#3d7a63',
+                        teal:         '#4a8c7a',
+                        'teal-lt':    '#7aad96',
+                        sage:         '#a8c4b4',
+                        'sage-lt':    '#dceee6',
+                        earth:        '#8b6f5c',
+                        sand:         '#c4a882',
+                        linen:        '#f7f4ef',
+                        cream:        '#fdfaf5',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans:  ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: #f7f4ef;
+            color: #2c2c2c;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Scroll-reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-6 { transition-delay: 0.6s; }
+        .reveal-delay-7 { transition-delay: 0.7s; }
+        .reveal-delay-8 { transition-delay: 0.8s; }
+
+        /* ── Modality card hover ── */
+        .mod-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .mod-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(45, 90, 74, 0.14);
+        }
+
+        /* ── Event card hover ── */
+        .event-card {
+            transition: background 0.25s ease, border-color 0.25s ease;
+        }
+        .event-card:hover {
+            background: rgba(255,255,255,0.13) !important;
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            * { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+        }
+
+        /* ── Hero botanical SVG ── */
+        .hero-bg {
+            background-color: #1e3d32;
+        }
+
+        /* ── Decorative quote marks ── */
+        .big-quote {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 11rem;
+            line-height: 1;
+            color: rgba(74,140,122,0.12);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* ── Nav shrink on scroll ── */
+        #site-nav {
+            transition: padding 0.3s ease, background 0.3s ease;
+        }
+        #site-nav.scrolled {
+            background: rgba(247,244,239,0.97);
+            box-shadow: 0 1px 12px rgba(45,90,74,0.08);
+        }
+
+        /* Mobile nav overlay */
+        #mobile-menu {
+            display: none;
+        }
+        #mobile-menu.open {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="font-sans">
+
+<!-- ─────────────────────────────────────────── NAV ───── -->
+<nav id="site-nav" class="fixed top-0 left-0 right-0 z-50 bg-linen/90 backdrop-blur-md border-b border-sage/20 py-4">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <a href="#hero" class="font-serif text-xl text-forest tracking-wide cursor-pointer">Eddie Zce</a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-7 font-sans text-sm">
+            <a href="#about"      class="text-forest/70 hover:text-forest transition-colors duration-200 cursor-pointer">About</a>
+            <a href="#modalities" class="text-forest/70 hover:text-forest transition-colors duration-200 cursor-pointer">Modalities</a>
+            <a href="#events"     class="text-forest/70 hover:text-forest transition-colors duration-200 cursor-pointer">Events</a>
+            <a href="#contact" class="bg-forest text-linen px-5 py-2 rounded-full hover:bg-forest-md transition-colors duration-200 cursor-pointer font-medium tracking-wide">Book a Session</a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button id="menu-toggle" class="md:hidden text-forest cursor-pointer p-1" aria-label="Toggle menu" aria-expanded="false">
+            <svg id="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile menu overlay -->
+    <div id="mobile-menu" class="md:hidden flex-col items-center gap-6 py-8 bg-linen border-t border-sage/20 text-base font-sans">
+        <a href="#about"      class="text-forest/80 hover:text-forest cursor-pointer" onclick="closeMobileMenu()">About</a>
+        <a href="#modalities" class="text-forest/80 hover:text-forest cursor-pointer" onclick="closeMobileMenu()">Modalities</a>
+        <a href="#events"     class="text-forest/80 hover:text-forest cursor-pointer" onclick="closeMobileMenu()">Events</a>
+        <a href="#contact"    class="bg-forest text-linen px-8 py-3 rounded-full font-medium cursor-pointer" onclick="closeMobileMenu()">Book a Session</a>
+    </div>
+</nav>
+
+
+<!-- ─────────────────────────────────────────── HERO ───── -->
+<section id="hero" class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+
+    <!-- Botanical SVG background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <!-- Left fern -->
+        <svg class="absolute bottom-0 left-0 w-72 opacity-10" viewBox="0 0 300 500" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#a8c4b4">
+                <path d="M20,500 Q80,380 100,260 Q60,340 30,460 Z"/>
+                <path d="M10,500 Q90,360 120,220 Q70,320 20,440 Z"/>
+                <path d="M0,480 Q70,340 90,180 Q40,300 5,420 Z"/>
+                <path d="M30,500 Q110,400 140,300 Q90,380 40,480 Z"/>
+                <path d="M50,500 Q140,420 170,340 Q110,400 55,490 Z"/>
+            </g>
+        </svg>
+        <!-- Right fern -->
+        <svg class="absolute bottom-0 right-0 w-72 opacity-10" viewBox="0 0 300 500" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#a8c4b4">
+                <path d="M280,500 Q220,380 200,260 Q240,340 270,460 Z"/>
+                <path d="M290,500 Q210,360 180,220 Q230,320 280,440 Z"/>
+                <path d="M300,480 Q230,340 210,180 Q260,300 295,420 Z"/>
+                <path d="M270,500 Q190,400 160,300 Q210,380 260,480 Z"/>
+                <path d="M250,500 Q160,420 130,340 Q190,400 245,490 Z"/>
+            </g>
+        </svg>
+        <!-- Top center subtle light -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full"
+             style="background: radial-gradient(circle, rgba(74,140,122,0.18) 0%, transparent 70%)"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+
+        <!-- 12-year badge -->
+        <div class="reveal inline-flex items-center gap-2 border border-teal/40 text-teal-lt px-5 py-2 rounded-full text-xs font-sans font-medium tracking-widest uppercase mb-8">
+            <!-- Star icon -->
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            16 Years of Healing Touch
+        </div>
+
+        <!-- Name -->
+        <h1 class="reveal reveal-delay-1 font-serif font-light text-linen leading-none mb-2 tracking-wide"
+            style="font-size: clamp(4rem, 12vw, 9rem)">
+            Eddie
+        </h1>
+        <h1 class="reveal reveal-delay-2 font-serif italic text-teal-lt leading-none mb-8 tracking-wide"
+            style="font-size: clamp(3.5rem, 10vw, 8rem)">
+            Zce
+        </h1>
+
+        <!-- Tagline -->
+        <p class="reveal reveal-delay-3 font-serif text-sage font-light italic leading-relaxed mb-10 max-w-2xl mx-auto"
+           style="font-size: clamp(1.1rem, 2.5vw, 1.5rem)">
+            Where ancient hands meet the living moment — presence, warmth, and deep release for every soul I serve.
+        </p>
+
+        <!-- Credential pills -->
+        <div class="reveal reveal-delay-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-12 font-sans text-xs text-sage/60 tracking-widest uppercase">
+            <span>Licensed Massage Therapist</span>
+            <span class="text-teal/30 hidden sm:inline">·</span>
+            <span>Ayurvedic Practitioner</span>
+            <span class="text-teal/30 hidden sm:inline">·</span>
+            <span>Reiki Certified</span>
+            <span class="text-teal/30 hidden sm:inline">·</span>
+            <span>Sound Healer</span>
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="reveal reveal-delay-5 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#contact"
+               class="bg-teal hover:bg-teal-lt text-white font-sans font-medium px-9 py-4 rounded-full transition-colors duration-200 cursor-pointer tracking-wide text-sm">
+                Book a Session
+            </a>
+            <a href="#about"
+               class="border border-sage/40 text-sage hover:border-sage hover:text-linen font-sans font-medium px-9 py-4 rounded-full transition-colors duration-200 cursor-pointer tracking-wide text-sm">
+                My Story
+            </a>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-sage/30 animate-bounce" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M19 9l-7 7-7-7"/>
+        </svg>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────── ABOUT ───── -->
+<section id="about" class="py-28 md:py-36 bg-cream">
+    <div class="max-w-3xl mx-auto px-6">
+
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <p class="reveal font-sans text-xs tracking-widest uppercase text-earth mb-4">My Story</p>
+            <h2 class="reveal reveal-delay-1 font-serif font-light text-forest"
+                style="font-size: clamp(2.5rem, 6vw, 4rem)">
+                About Me
+            </h2>
+            <!-- Decorative divider -->
+            <div class="reveal reveal-delay-2 flex items-center justify-center gap-3 mt-6">
+                <div class="h-px w-16 bg-teal/30"></div>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#4a8c7a" opacity="0.5" aria-hidden="true">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                </svg>
+                <div class="h-px w-16 bg-teal/30"></div>
+            </div>
+        </div>
+
+        <!-- Paragraphs -->
+        <div class="space-y-8 text-stone-600 leading-relaxed" style="font-size: 1.0625rem; line-height: 1.85">
+            <p class="reveal">
+                For sixteen years, I have had the sacred privilege of working with the human body — its resilience, its quiet intelligence, its capacity for transformation. I believe that touch, offered with full presence and genuine care, is among the most ancient and healing gifts we can offer one another. My work is not simply technique applied to muscle; it is a form of listening. A living conversation between intention and release, between what the body has been holding and what it is finally, quietly, ready to let go of.
+            </p>
+            <p class="reveal reveal-delay-1">
+                My path began with Swedish massage — that foundational language of long, flowing strokes that teaches us how breath and circulation move as one, how the nervous system learns to soften and trust. From there, the river carried me wider: into the dosha wisdom of Ayurveda, warm herbal oils moving along ancient marma pathways; into the mat-based poetry of Thai massage, with its acupressure and assisted opening; into the oceanic spirit of Lomi Lomi, where continuous wave-like strokes reach something deep and cellular. I have received Reiki, studied forearm deep tissue work, reflexology, and the profound medicine of sound. Each tradition I have carried not as a credential to accumulate, but as a doorway into the vast intelligence of the body.
+            </p>
+            <p class="reveal reveal-delay-2">
+                Some of my most alive moments as a therapist have happened not in a treatment room, but at a gathering. On the floor of an ecstatic dance event after the last song fades. At a holistic retreat where people arrive thin and scattered and leave feeling whole. At a conscious festival where strangers lie down on my table and rise quietly changed. I am drawn to the edges of the ordinary — to those spaces where community gathers to remember something essential about living fully in a body. This is where I find my deepest work, and where I come home to my truest self.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────── TRAINING JOURNEY ───── -->
+<section id="training" class="py-28 md:py-36 bg-linen">
+    <div class="max-w-3xl mx-auto px-6">
+
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <p class="reveal font-sans text-xs tracking-widest uppercase text-earth mb-4">Education</p>
+            <h2 class="reveal reveal-delay-1 font-serif font-light text-forest"
+                style="font-size: clamp(2.5rem, 6vw, 4rem)">
+                Training Journey
+            </h2>
+            <p class="reveal reveal-delay-2 font-sans text-sm text-stone-500 mt-4 max-w-lg mx-auto leading-relaxed">
+                Each school, each teacher, each tradition has shaped the hands I bring to every session.
+            </p>
+            <div class="reveal reveal-delay-3 flex items-center justify-center gap-3 mt-6">
+                <div class="h-px w-16 bg-teal/30"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-teal/50"></div>
+                <div class="h-px w-16 bg-teal/30"></div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative">
+            <!-- Vertical line -->
+            <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-sage/40 -translate-x-1/2" aria-hidden="true"></div>
+
+            <div class="space-y-12">
+
+                <!-- 2010 — Corpore Vital, Romania -->
+                <div class="reveal relative flex flex-col md:flex-row md:items-start gap-6 md:gap-0">
+                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1">
+                        <span class="font-sans text-xs tracking-widest uppercase text-earth/70 block mb-1">2010 · Romania</span>
+                        <h3 class="font-serif text-2xl text-forest mb-2">Corpore Vital</h3>
+                        <p class="font-sans text-sm text-stone-500 leading-relaxed">Where it all began. My foundational training in massage therapy, rooted in European bodywork traditions — the spark that set the path in motion.</p>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal border-2 border-linen shadow-sm mt-1 order-1 md:order-2" aria-hidden="true"></div>
+                    <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
+                </div>
+
+                <!-- 2012 — PA Institute of Massage Therapy -->
+                <div class="reveal reveal-delay-1 relative flex flex-col md:flex-row md:items-start gap-6 md:gap-0">
+                    <div class="md:w-1/2 md:pr-12 order-2 md:order-1 hidden md:block"></div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal border-2 border-linen shadow-sm mt-1 order-1 md:order-2" aria-hidden="true"></div>
+                    <div class="md:w-1/2 md:pl-12 order-3 pl-12 md:pl-12">
+                        <span class="font-sans text-xs tracking-widest uppercase text-earth/70 block mb-1">2012 · Pennsylvania</span>
+                        <h3 class="font-serif text-2xl text-forest mb-2">PA Institute of Massage Therapy</h3>
+                        <p class="font-sans text-sm text-stone-500 leading-relaxed">Deepened my clinical skills and professional foundations, expanding into Swedish, deep tissue, and therapeutic techniques.</p>
+                    </div>
+                </div>
+
+                <!-- 2016 — Academy of Massage Therapy, Pottstown -->
+                <div class="reveal reveal-delay-2 relative flex flex-col md:flex-row md:items-start gap-6 md:gap-0">
+                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1">
+                        <span class="font-sans text-xs tracking-widest uppercase text-earth/70 block mb-1">2016 · Pottstown, PA</span>
+                        <h3 class="font-serif text-2xl text-forest mb-2">Academy of Massage Therapy</h3>
+                        <p class="font-sans text-sm text-stone-500 leading-relaxed">Where I was introduced to Lomi Lomi and Forearm Fusion — expanding my repertoire into Hawaiian wave-work and deep broad-pressure techniques.</p>
+                        <div class="flex gap-2 mt-3 md:justify-end flex-wrap">
+                            <span class="inline-block bg-sage-lt text-forest text-xs font-sans px-2.5 py-1 rounded-full">Lomi Lomi</span>
+                            <span class="inline-block bg-sage-lt text-forest text-xs font-sans px-2.5 py-1 rounded-full">Forearm Fusion</span>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal border-2 border-linen shadow-sm mt-1 order-1 md:order-2" aria-hidden="true"></div>
+                    <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
+                </div>
+
+                <!-- 2018 — American Reflexology -->
+                <div class="reveal relative flex flex-col md:flex-row md:items-start gap-6 md:gap-0">
+                    <div class="md:w-1/2 md:pr-12 order-2 md:order-1 hidden md:block"></div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-earth/60 border-2 border-linen shadow-sm mt-1 order-1 md:order-2" aria-hidden="true"></div>
+                    <div class="md:w-1/2 md:pl-12 order-3 pl-12 md:pl-12">
+                        <span class="font-sans text-xs tracking-widest uppercase text-earth/70 block mb-1">2018 · Reflexology</span>
+                        <h3 class="font-serif text-2xl text-forest mb-2">American Reflexology</h3>
+                        <p class="font-sans text-sm text-stone-500 leading-relaxed">Certified training in foot, hand, and ear reflexology — mapping the body's organ systems through the art of precise pressure point work.</p>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span class="inline-block bg-sage-lt text-forest text-xs font-sans px-2.5 py-1 rounded-full">Reflexology</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2023 — National Holistic Institute, Thai -->
+                <div class="reveal reveal-delay-1 relative flex flex-col md:flex-row md:items-start gap-6 md:gap-0">
+                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1">
+                        <span class="font-sans text-xs tracking-widest uppercase text-earth/70 block mb-1">2023 · Thai Massage</span>
+                        <h3 class="font-serif text-2xl text-forest mb-2">National Holistic Institute</h3>
+                        <p class="font-sans text-sm text-stone-500 leading-relaxed">Traditional Thai massage training — assisted stretching, sen energy line work, and the meditative presence at the heart of this ancient art.</p>
+                        <div class="flex gap-2 mt-3 md:justify-end flex-wrap">
+                            <span class="inline-block bg-sage-lt text-forest text-xs font-sans px-2.5 py-1 rounded-full">Thai Massage</span>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-earth/60 border-2 border-linen shadow-sm mt-1 order-1 md:order-2" aria-hidden="true"></div>
+                    <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
+                </div>
+
+                <!-- 2025 — Ojas, Ayurveda -->
+                <div class="reveal reveal-delay-2 relative flex flex-col md:flex-row md:items-start gap-6 md:gap-0">
+                    <div class="md:w-1/2 md:pr-12 order-2 md:order-1 hidden md:block"></div>
+                    <!-- Dot -->
+                    <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-earth/60 border-2 border-linen shadow-sm mt-1 order-1 md:order-2" aria-hidden="true"></div>
+                    <div class="md:w-1/2 md:pl-12 order-3 pl-12 md:pl-12">
+                        <span class="font-sans text-xs tracking-widest uppercase text-earth/70 block mb-1">2025 · Ayurveda</span>
+                        <h3 class="font-serif text-2xl text-forest mb-2">Ojas</h3>
+                        <p class="font-sans text-sm text-stone-500 leading-relaxed">Immersive Ayurvedic bodywork training — dosha theory, warm herbal oil applications, and marma point therapy for constitutional healing.</p>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span class="inline-block bg-sage-lt text-forest text-xs font-sans px-2.5 py-1 rounded-full">Ayurveda</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────── MODALITIES ───── -->
+<section id="modalities" class="py-28 md:py-36 bg-linen">
+    <div class="max-w-6xl mx-auto px-6">
+
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <p class="reveal font-sans text-xs tracking-widest uppercase text-earth mb-4">The Work</p>
+            <h2 class="reveal reveal-delay-1 font-serif font-light text-forest"
+                style="font-size: clamp(2.5rem, 6vw, 4rem)">
+                Modalities
+            </h2>
+            <p class="reveal reveal-delay-2 font-sans text-sm text-stone-500 mt-4 max-w-lg mx-auto leading-relaxed">
+                Each tradition I carry is a different language for the same truth — that the body is wise, and healing is always possible.
+            </p>
+            <div class="reveal reveal-delay-3 flex items-center justify-center gap-3 mt-6">
+                <div class="h-px w-16 bg-teal/30"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-teal/50"></div>
+                <div class="h-px w-16 bg-teal/30"></div>
+            </div>
+        </div>
+
+        <!-- 4-column card grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- 1. Swedish Massage -->
+            <div class="reveal mod-card bg-white rounded-2xl p-7 border border-sage/20 shadow-sm">
+                <div class="w-11 h-11 bg-sage-lt rounded-xl flex items-center justify-center mb-4">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <path d="M3 12 Q7 7 12 12 Q17 17 21 12"/>
+                        <path d="M3 16 Q7 11 12 16 Q17 21 21 16" opacity="0.4"/>
+                    </svg>
+                </div>
+                <span class="inline-block bg-forest/10 text-forest text-xs font-sans font-medium px-2.5 py-0.5 rounded-full mb-3 tracking-wide">Core Specialty</span>
+                <h3 class="font-serif text-xl text-forest mb-2 leading-tight">Swedish Massage</h3>
+                <p class="font-sans text-sm text-stone-500 leading-relaxed">Long flowing strokes that ease tension, restore circulation, and invite the nervous system into deep rest.</p>
+            </div>
+
+            <!-- 2. Ayurveda -->
+            <div class="reveal reveal-delay-1 mod-card bg-white rounded-2xl p-7 border border-sage/20 shadow-sm">
+                <div class="w-11 h-11 bg-sage-lt rounded-xl flex items-center justify-center mb-4">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <path d="M12 3 Q17 9 12 16 Q7 9 12 3Z"/>
+                        <path d="M12 16 Q19 17 21 22 Q15 18 12 16Z"/>
+                        <path d="M12 16 Q5 17 3 22 Q9 18 12 16Z"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-2 leading-tight">Ayurveda</h3>
+                <p class="font-sans text-sm text-stone-500 leading-relaxed">Dosha-based bodywork with warm herbal oils and marma point therapy to restore constitutional balance.</p>
+            </div>
+
+            <!-- 3. Reiki -->
+            <div class="reveal reveal-delay-2 mod-card bg-white rounded-2xl p-7 border border-sage/20 shadow-sm">
+                <div class="w-11 h-11 bg-sage-lt rounded-xl flex items-center justify-center mb-4">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="2.5"/>
+                        <path d="M12 2v3.5M12 18.5V22M2 12h3.5M18.5 12H22"/>
+                        <path d="M5.64 5.64l2.47 2.47M15.89 15.89l2.47 2.47M5.64 18.36l2.47-2.47M15.89 8.11l2.47-2.47" opacity="0.5"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-2 leading-tight">Reiki</h3>
+                <p class="font-sans text-sm text-stone-500 leading-relaxed">Channeling universal life-force energy to clear blockages, restore harmony, and awaken the body's innate healing.</p>
+            </div>
+
+            <!-- 4. Thai Massage -->
+            <div class="reveal reveal-delay-3 mod-card bg-white rounded-2xl p-7 border border-sage/20 shadow-sm">
+                <div class="w-11 h-11 bg-sage-lt rounded-xl flex items-center justify-center mb-4">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="12" cy="3.5" r="1.5"/>
+                        <path d="M12 5.5v7"/>
+                        <path d="M8 9 Q10 10.5 12 10 Q14 9.5 16 11"/>
+                        <path d="M10 12.5 L8 20M14 12.5 L16 20"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-2 leading-tight">Thai Massage</h3>
+                <p class="font-sans text-sm text-stone-500 leading-relaxed">Assisted stretching and acupressure along energy lines. Clothes-on, mat-based, and deeply opening.</p>
+            </div>
+
+            <!-- 5. Forearm Fusion -->
+            <div class="reveal mod-card bg-white rounded-2xl p-7 border border-sage/20 shadow-sm">
+                <div class="w-11 h-11 bg-sage-lt rounded-xl flex items-center justify-center mb-4">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <path d="M3 15 Q8 11 15 9.5 L22 8"/>
+                        <circle cx="9"  cy="12.5" r="1.3" fill="#2d5a4a" stroke="none"/>
+                        <circle cx="13" cy="11"   r="1.3" fill="#2d5a4a" stroke="none"/>
+                        <circle cx="17" cy="9.5"  r="1.3" fill="#2d5a4a" stroke="none"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-2 leading-tight">Forearm Fusion</h3>
+                <p class="font-sans text-sm text-stone-500 leading-relaxed">Broad forearm pressure to access deep tissue layers — firm, grounding, and profoundly releasing.</p>
+            </div>
+
+            <!-- 6. Lomi Lomi -->
+            <div class="reveal reveal-delay-1 mod-card bg-white rounded-2xl p-7 border border-sage/20 shadow-sm">
+                <div class="w-11 h-11 bg-sage-lt rounded-xl flex items-center justify-center mb-4">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <path d="M2 15 Q5 11 8 15 Q11 19 14 15 Q17 11 20 15 Q21.5 17 23 15"/>
+                        <path d="M2 11 Q5 7 8 11 Q11 15 14 11 Q17 7 20 11 Q21.5 13 23 11" opacity="0.35"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-2 leading-tight">Lomi Lomi</h3>
+                <p class="font-sans text-sm text-stone-500 leading-relaxed">Hawaiian tradition of continuous, wave-like strokes that move through the body for deep cellular release and renewal.</p>
+            </div>
+
+            <!-- 7. Reflexology -->
+            <div class="reveal reveal-delay-2 mod-card bg-white rounded-2xl p-7 border border-sage/20 shadow-sm">
+                <div class="w-11 h-11 bg-sage-lt rounded-xl flex items-center justify-center mb-4">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <path d="M8 21 Q6 16 7 10 Q8 5.5 11 5 Q13.5 5 14.5 7.5 L14.5 21 Q11.5 22 8 21Z"/>
+                        <circle cx="10" cy="9"  r="1" fill="#2d5a4a" stroke="none"/>
+                        <circle cx="11" cy="13" r="1" fill="#2d5a4a" stroke="none"/>
+                        <circle cx="10" cy="17" r="1" fill="#2d5a4a" stroke="none"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-2 leading-tight">Reflexology</h3>
+                <p class="font-sans text-sm text-stone-500 leading-relaxed">Foot, hand, and ear pressure maps that stimulate organ systems and promote whole-body healing from the extremities.</p>
+            </div>
+
+            <!-- 8. Sound Healing -->
+            <div class="reveal reveal-delay-3 mod-card bg-white rounded-2xl p-7 border border-sage/20 shadow-sm">
+                <div class="w-11 h-11 bg-sage-lt rounded-xl flex items-center justify-center mb-4">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <path d="M7 19 Q12 17.5 17 19" stroke-width="2"/>
+                        <path d="M5.5 15.5 Q12 13.5 18.5 15.5"/>
+                        <path d="M4 11.5 Q12 8.5 20 11.5" opacity="0.6"/>
+                        <path d="M3 7.5 Q12 4 21 7.5" opacity="0.3"/>
+                        <ellipse cx="12" cy="20.5" rx="5.5" ry="1.5" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-2 leading-tight">Sound Healing</h3>
+                <p class="font-sans text-sm text-stone-500 leading-relaxed">Tibetan singing bowls, tuning forks, and toning to reset the nervous system through vibrational resonance.</p>
+            </div>
+
+            <!-- 9. Cupping -->
+            <div class="reveal mod-card bg-white rounded-2xl p-7 border border-sage/20 shadow-sm">
+                <div class="w-11 h-11 bg-sage-lt rounded-xl flex items-center justify-center mb-4">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <path d="M7 20 Q5 15 6 10 Q7 6 12 6 Q17 6 18 10 Q19 15 17 20 Z"/>
+                        <path d="M9 6 Q9 4 12 3 Q15 4 15 6" opacity="0.5"/>
+                        <path d="M9 13 Q12 15 15 13" opacity="0.6"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-2 leading-tight">Cupping</h3>
+                <p class="font-sans text-sm text-stone-500 leading-relaxed">Suction cups lift and separate tissue to release fascial adhesions, stimulate circulation, and draw out stagnation.</p>
+            </div>
+
+            <!-- 10. Hot Stone Therapy -->
+            <div class="reveal reveal-delay-1 mod-card bg-white rounded-2xl p-7 border border-sage/20 shadow-sm">
+                <div class="w-11 h-11 bg-sage-lt rounded-xl flex items-center justify-center mb-4">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <ellipse cx="12" cy="14" rx="7" ry="5"/>
+                        <path d="M9 9 Q9 6 12 5 Q15 6 15 9" opacity="0.5"/>
+                        <path d="M11 5 Q11 2.5 12 2 Q13 2.5 13 5" opacity="0.3"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-2 leading-tight">Hot Stone Therapy</h3>
+                <p class="font-sans text-sm text-stone-500 leading-relaxed">Warmed basalt stones melt deep tension, amplify circulation, and create a profoundly grounding, meditative experience.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ──────────────────────────── WHERE YOU'LL FIND ME ───── -->
+<section id="events" class="py-28 md:py-36 relative overflow-hidden" style="background-color: #2d5a4a;">
+
+    <!-- Subtle circular background ornament -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <svg viewBox="0 0 900 600" class="absolute inset-0 w-full h-full opacity-5" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="450" cy="300" r="350" fill="none" stroke="#a8c4b4" stroke-width="1"/>
+            <circle cx="150" cy="550" r="200" fill="none" stroke="#a8c4b4" stroke-width="1"/>
+            <circle cx="780" cy="80"  r="250" fill="none" stroke="#a8c4b4" stroke-width="1"/>
+        </svg>
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6">
+
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <p class="reveal font-sans text-xs tracking-widest uppercase text-teal-lt/70 mb-4">Community Presence</p>
+            <h2 class="reveal reveal-delay-1 font-serif font-light text-linen"
+                style="font-size: clamp(2.5rem, 6vw, 4rem)">
+                Where You'll Find Me
+            </h2>
+            <p class="reveal reveal-delay-2 font-sans text-sm text-sage mt-4 max-w-lg mx-auto leading-relaxed">
+                Healing doesn't only happen behind closed doors. I follow the pulse of the living community — and bring the table wherever souls are gathering.
+            </p>
+            <div class="reveal reveal-delay-3 flex items-center justify-center gap-3 mt-6">
+                <div class="h-px w-16 bg-teal/40"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-teal/60"></div>
+                <div class="h-px w-16 bg-teal/40"></div>
+            </div>
+        </div>
+
+        <!-- Event cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Ecstatic Dance -->
+            <div class="reveal event-card bg-white/8 border border-white/10 rounded-2xl p-9 text-center cursor-default"
+                 style="background: rgba(255,255,255,0.07);">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                     style="background: rgba(74,140,122,0.25);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7aad96" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="12" cy="3.5" r="1.5"/>
+                        <path d="M9 8 Q7 11 8.5 15 Q9.5 17.5 7.5 20.5"/>
+                        <path d="M15 8 Q17 11 15.5 15 Q14.5 17.5 16.5 20.5"/>
+                        <path d="M9 12 Q12 14 15 12"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-2xl text-linen mb-4 font-light">Ecstatic Dance</h3>
+                <p class="font-sans text-sm leading-relaxed" style="color: rgba(168,196,180,0.85);">
+                    Between the waves of music and movement, I offer bodywork to help dancers process, integrate, and land fully back in the living body.
+                </p>
+            </div>
+
+            <!-- Holistic Retreats -->
+            <div class="reveal reveal-delay-1 event-card border border-white/10 rounded-2xl p-9 text-center cursor-default"
+                 style="background: rgba(255,255,255,0.07);">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                     style="background: rgba(74,140,122,0.25);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7aad96" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                        <path d="M3 19 Q6 10 12 8 Q18 10 21 19"/>
+                        <path d="M7 19 Q9.5 13.5 12 12.5 Q14.5 13.5 17 19"/>
+                        <line x1="12" y1="8" x2="12" y2="4"/>
+                        <path d="M9.5 6 Q12 3 14.5 6"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-2xl text-linen mb-4 font-light">Holistic Retreats</h3>
+                <p class="font-sans text-sm leading-relaxed" style="color: rgba(168,196,180,0.85);">
+                    Wellness and healing immersions where I serve as a grounding presence — helping participants move from depletion back into wholeness.
+                </p>
+            </div>
+
+            <!-- Conscious Festivals -->
+            <div class="reveal reveal-delay-2 event-card border border-white/10 rounded-2xl p-9 text-center cursor-default"
+                 style="background: rgba(255,255,255,0.07);">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                     style="background: rgba(74,140,122,0.25);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7aad96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 2 l2.5 7.5 h7.5 l-6 4.5 2 7-6-4.5-6 4.5 2-7-6-4.5h7.5Z"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-2xl text-linen mb-4 font-light">Conscious Festivals</h3>
+                <p class="font-sans text-sm leading-relaxed" style="color: rgba(168,196,180,0.85);">
+                    Pop-up healing sessions at community gatherings — meeting people exactly where they are, in the joyful, tender heart of the festival.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────── PERSONAL QUOTE ───── -->
+<section id="quote" class="py-28 md:py-36 bg-cream relative overflow-hidden">
+
+    <!-- Decorative oversized quote mark -->
+    <div class="absolute top-0 left-0 right-0 text-center select-none pointer-events-none" aria-hidden="true">
+        <span class="big-quote">&ldquo;</span>
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+        <blockquote>
+            <p class="reveal font-serif italic font-light text-forest leading-snug"
+               style="font-size: clamp(1.8rem, 4.5vw, 3.2rem);">
+                "Every body I touch is a world — ancient, intelligent, and endlessly worthy of care."
+            </p>
+            <footer class="reveal reveal-delay-1 mt-10">
+                <div class="flex items-center justify-center gap-3 mb-5">
+                    <div class="h-px w-12 bg-teal/40"></div>
+                    <div class="w-2 h-2 rounded-full bg-teal/60"></div>
+                    <div class="h-px w-12 bg-teal/40"></div>
+                </div>
+                <cite class="font-sans text-xs tracking-widest uppercase text-earth not-italic">Eddie Zce, LMT</cite>
+            </footer>
+        </blockquote>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────── CTA ───── -->
+<section id="contact" class="py-28 md:py-36 bg-linen">
+    <div class="max-w-xl mx-auto px-6">
+
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <p class="reveal font-sans text-xs tracking-widest uppercase text-earth mb-4">Begin Your Journey</p>
+            <h2 class="reveal reveal-delay-1 font-serif font-light text-forest mb-6"
+                style="font-size: clamp(2.5rem, 6vw, 4rem)">
+                Book a Session
+            </h2>
+            <p class="reveal reveal-delay-2 font-sans text-sm text-stone-500 leading-relaxed max-w-md mx-auto">
+                Whether you're coming in for deep restoration, exploring a new modality, or simply ready to be held in safe and skilled hands — I am here.
+            </p>
+            <div class="reveal reveal-delay-3 flex items-center justify-center gap-3 mt-8">
+                <div class="h-px w-16 bg-teal/30"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-teal/50"></div>
+                <div class="h-px w-16 bg-teal/30"></div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form action="https://formsubmit.co/eduardstrada7@gmail.com"
+              method="POST"
+              class="reveal reveal-delay-4 bg-white rounded-2xl p-8 shadow-sm border border-sage/20 text-left">
+
+            <!-- FormSubmit config -->
+            <input type="hidden" name="_cc"         value="2677338410@vtext.com">
+            <input type="hidden" name="_subject"    value="New Session Request — Eddie Zce">
+            <input type="hidden" name="_captcha"    value="false">
+            <input type="hidden" name="_template"   value="box">
+
+            <div class="space-y-5">
+                <!-- Name -->
+                <div>
+                    <label for="name" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Your Name</label>
+                    <input type="text" id="name" name="name" required
+                           placeholder="Full name"
+                           class="w-full border border-sage/30 rounded-xl px-4 py-3 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200">
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    <label for="phone" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Phone (optional)</label>
+                    <input type="tel" id="phone" name="phone"
+                           placeholder="Your phone number"
+                           class="w-full border border-sage/30 rounded-xl px-4 py-3 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200">
+                </div>
+
+                <!-- Modality interest -->
+                <div>
+                    <label for="modality" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Interested In</label>
+                    <select id="modality" name="modality"
+                            class="w-full border border-sage/30 rounded-xl px-4 py-3 font-sans text-sm text-stone-700 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 bg-white cursor-pointer">
+                        <option value="">Select a modality (optional)</option>
+                        <option>Swedish Massage</option>
+                        <option>Ayurveda</option>
+                        <option>Reiki</option>
+                        <option>Thai Massage</option>
+                        <option>Forearm Fusion</option>
+                        <option>Lomi Lomi</option>
+                        <option>Reflexology</option>
+                        <option>Sound Healing</option>
+                        <option>Cupping</option>
+                        <option>Hot Stone Therapy</option>
+                        <option>Not sure — let's talk</option>
+                    </select>
+                </div>
+
+                <!-- Message -->
+                <div>
+                    <label for="message" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Message</label>
+                    <textarea id="message" name="message" rows="4" required
+                              placeholder="Tell me a little about what you're looking for..."
+                              class="w-full border border-sage/30 rounded-xl px-4 py-3 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 resize-none"></textarea>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit"
+                        class="w-full bg-forest hover:bg-forest-md text-linen font-sans font-medium py-4 rounded-full transition-colors duration-200 cursor-pointer tracking-wide text-sm flex items-center justify-center gap-2.5">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                    Send Message
+                </button>
+            </div>
+        </form>
+
+        <!-- Fine print -->
+        <p class="reveal reveal-delay-5 font-sans text-xs text-stone-400 leading-relaxed text-center mt-6">
+            Available for private sessions · Retreats · Festival bookings<br>
+            <span class="text-earth/70">Response within 24 hours</span>
+        </p>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────── FOOTER ───── -->
+<footer style="background-color: #1e3d32;" class="py-10">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <span class="font-serif text-xl tracking-wide" style="color: rgba(247,244,239,0.75);">Eddie Zce</span>
+        <p class="font-sans text-xs text-center" style="color: rgba(168,196,180,0.5);">
+            Licensed Massage Therapist · 16 Years · Retreats · Ecstatic Dance · Conscious Festivals
+        </p>
+        <p class="font-sans text-xs" style="color: rgba(168,196,180,0.35);">&copy; 2026</p>
+    </div>
+</footer>
+
+
+<!-- ─────────────────────────────────────────── JS ───── -->
+<script>
+    // ── Scroll-reveal via IntersectionObserver ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── Nav scroll class ──
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── Mobile menu toggle ──
+    const toggle   = document.getElementById('menu-toggle');
+    const mobileMenu  = document.getElementById('mobile-menu');
+    const iconOpen  = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        iconOpen.classList.toggle('hidden', isOpen);
+        iconClose.classList.toggle('hidden', !isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+</script>
+
+</body>
+</html>
