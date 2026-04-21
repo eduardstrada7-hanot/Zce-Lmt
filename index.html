@@ -121,6 +121,16 @@
         #mobile-menu.open {
             display: flex;
         }
+
+        /* ── Session type card toggle ── */
+        .session-type-card.selected {
+            border-color: #4a8c7a;
+            background: #f0f8f4;
+        }
+        .session-type-card.selected p:first-of-type {
+            color: #2d5a4a;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body class="font-sans">
@@ -688,7 +698,7 @@
 
 <!-- ─────────────────────────────────────────── CTA ───── -->
 <section id="contact" class="py-28 md:py-36 bg-linen">
-    <div class="max-w-xl mx-auto px-6">
+    <div class="max-w-2xl mx-auto px-6">
 
         <!-- Header -->
         <div class="text-center mb-12">
@@ -697,8 +707,8 @@
                 style="font-size: clamp(2.5rem, 6vw, 4rem)">
                 Book a Session
             </h2>
-            <p class="reveal reveal-delay-2 font-sans text-sm text-stone-500 leading-relaxed max-w-md mx-auto">
-                Whether you're coming in for deep restoration, exploring a new modality, or simply ready to be held in safe and skilled hands — I am here.
+            <p class="reveal reveal-delay-2 font-sans text-sm text-stone-500 leading-relaxed max-w-lg mx-auto">
+                I travel to you — whether it's a private session at your home or a full day of healing at your event. Fill out the form and I'll be in touch to confirm the details.
             </p>
             <div class="reveal reveal-delay-3 flex items-center justify-center gap-3 mt-8">
                 <div class="h-px w-16 bg-teal/30"></div>
@@ -707,61 +717,170 @@
             </div>
         </div>
 
-        <!-- Contact Form -->
+        <!-- Booking Form -->
         <form action="https://formsubmit.co/eduardstrada7@gmail.com"
               method="POST"
-              class="reveal reveal-delay-4 bg-white rounded-2xl p-8 shadow-sm border border-sage/20 text-left">
+              class="reveal reveal-delay-4 bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-sage/20 text-left">
 
             <!-- FormSubmit config -->
-            <input type="hidden" name="_cc"         value="2677338410@vtext.com">
-            <input type="hidden" name="_subject"    value="New Session Request — Eddie Zce">
-            <input type="hidden" name="_captcha"    value="false">
-            <input type="hidden" name="_template"   value="box">
+            <input type="hidden" name="_cc"       value="2677338410@vtext.com">
+            <input type="hidden" name="_subject"  value="New Booking Request — Eddie Zce">
+            <input type="hidden" name="_captcha"  value="false">
+            <input type="hidden" name="_template" value="box">
+
+            <!-- ── SESSION TYPE TOGGLE ── -->
+            <div class="mb-8">
+                <p class="font-sans text-xs tracking-widest uppercase text-earth mb-4">Session Type</p>
+                <div class="grid grid-cols-2 gap-3">
+                    <label class="session-type-label cursor-pointer">
+                        <input type="radio" name="session_type" value="Private Massage" class="sr-only" checked>
+                        <div class="session-type-card rounded-2xl border-2 border-sage/30 p-5 text-center transition-all duration-200 hover:border-teal/50 selected">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3" style="background:#dceee6">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                                    <path d="M3 12 Q7 7 12 12 Q17 17 21 12"/>
+                                    <path d="M3 16 Q7 11 12 16 Q17 21 21 16" opacity="0.4"/>
+                                </svg>
+                            </div>
+                            <p class="font-serif text-base text-forest leading-tight">Private Massage</p>
+                            <p class="font-sans text-xs text-stone-400 mt-1">90 or 120 min</p>
+                        </div>
+                    </label>
+                    <label class="session-type-label cursor-pointer">
+                        <input type="radio" name="session_type" value="Day Event" class="sr-only">
+                        <div class="session-type-card rounded-2xl border-2 border-sage/30 p-5 text-center transition-all duration-200 hover:border-teal/50">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3" style="background:#dceee6">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                                    <path d="M12 2 l2.5 7.5 h7.5 l-6 4.5 2 7-6-4.5-6 4.5 2-7-6-4.5h7.5Z"/>
+                                </svg>
+                            </div>
+                            <p class="font-serif text-base text-forest leading-tight">Day Event</p>
+                            <p class="font-sans text-xs text-stone-400 mt-1">3 hr minimum</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
 
             <div class="space-y-5">
-                <!-- Name -->
-                <div>
-                    <label for="name" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Your Name</label>
-                    <input type="text" id="name" name="name" required
-                           placeholder="Full name"
-                           class="w-full border border-sage/30 rounded-xl px-4 py-3 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200">
+
+                <!-- ── ROW: Name + Phone ── -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label for="name" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Your Name *</label>
+                        <input type="text" id="name" name="name" required
+                               placeholder="Full name"
+                               class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200">
+                    </div>
+                    <div>
+                        <label for="phone" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Phone *</label>
+                        <input type="tel" id="phone" name="phone" required
+                               placeholder="Your phone number"
+                               class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200">
+                    </div>
                 </div>
 
-                <!-- Phone -->
+                <!-- ── Location ── -->
                 <div>
-                    <label for="phone" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Phone (optional)</label>
-                    <input type="tel" id="phone" name="phone"
-                           placeholder="Your phone number"
-                           class="w-full border border-sage/30 rounded-xl px-4 py-3 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200">
+                    <label for="location" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Your Address / Location *</label>
+                    <input type="text" id="location" name="location" required
+                           placeholder="Where should I come to you?"
+                           class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200">
                 </div>
 
-                <!-- Modality interest -->
-                <div>
-                    <label for="modality" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Interested In</label>
-                    <select id="modality" name="modality"
-                            class="w-full border border-sage/30 rounded-xl px-4 py-3 font-sans text-sm text-stone-700 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 bg-white cursor-pointer">
-                        <option value="">Select a modality (optional)</option>
-                        <option>Swedish Massage</option>
-                        <option>Ayurveda</option>
-                        <option>Reiki</option>
-                        <option>Thai Massage</option>
-                        <option>Forearm Fusion</option>
-                        <option>Lomi Lomi</option>
-                        <option>Reflexology</option>
-                        <option>Sound Healing</option>
-                        <option>Cupping</option>
-                        <option>Hot Stone Therapy</option>
-                        <option>Not sure — let's talk</option>
-                    </select>
+                <!-- ── ROW: Date + Time ── -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label for="date" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Preferred Date *</label>
+                        <input type="date" id="date" name="preferred_date" required
+                               class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 cursor-pointer bg-white">
+                    </div>
+                    <div>
+                        <label for="time" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Preferred Time *</label>
+                        <input type="time" id="time" name="preferred_time" required
+                               class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 cursor-pointer bg-white">
+                    </div>
                 </div>
 
-                <!-- Message -->
-                <div>
-                    <label for="message" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Message</label>
-                    <textarea id="message" name="message" rows="4" required
-                              placeholder="Tell me a little about what you're looking for..."
-                              class="w-full border border-sage/30 rounded-xl px-4 py-3 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 resize-none"></textarea>
+                <!-- ── PRIVATE MASSAGE FIELDS ── -->
+                <div id="private-fields">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label for="duration" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Session Duration</label>
+                            <select id="duration" name="duration"
+                                    class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 bg-white cursor-pointer">
+                                <option value="90 min">90 minutes</option>
+                                <option value="120 min">120 minutes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="modality" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Modality</label>
+                            <select id="modality" name="modality"
+                                    class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 bg-white cursor-pointer">
+                                <option value="">Not sure — let's talk</option>
+                                <option>Swedish Massage</option>
+                                <option>Ayurveda</option>
+                                <option>Reiki</option>
+                                <option>Thai Massage</option>
+                                <option>Forearm Fusion</option>
+                                <option>Lomi Lomi</option>
+                                <option>Reflexology</option>
+                                <option>Sound Healing</option>
+                                <option>Cupping</option>
+                                <option>Hot Stone Therapy</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- ── DAY EVENT FIELDS ── -->
+                <div id="event-fields" class="hidden">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label for="event-hours" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Hours Needed</label>
+                            <select id="event-hours" name="event_hours"
+                                    class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 bg-white cursor-pointer">
+                                <option value="3 hours">3 hours (minimum)</option>
+                                <option value="4 hours">4 hours</option>
+                                <option value="5 hours">5 hours</option>
+                                <option value="6 hours">6 hours</option>
+                                <option value="7 hours">7 hours</option>
+                                <option value="8 hours">Full day (8 hours)</option>
+                                <option value="Custom">Custom — let's talk</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="event-type" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Event Type</label>
+                            <select id="event-type" name="event_type"
+                                    class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 bg-white cursor-pointer">
+                                <option>Holistic Retreat</option>
+                                <option>Ecstatic Dance</option>
+                                <option>Conscious Festival</option>
+                                <option>Corporate Wellness</option>
+                                <option>Private Party / Gathering</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Approx guests -->
+                    <div class="mt-5">
+                        <label for="guests" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Approximate Number of Guests</label>
+                        <input type="number" id="guests" name="guests" min="1"
+                               placeholder="How many people will you be serving?"
+                               class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200">
+                    </div>
+                </div>
+
+                <!-- ── Message ── -->
+                <div>
+                    <label for="message" class="block font-sans text-xs tracking-widest uppercase text-earth mb-2">Anything Else</label>
+                    <textarea id="message" name="message" rows="4"
+                              placeholder="Special requests, health considerations, questions..."
+                              class="w-full border border-sage/30 rounded-xl px-4 py-3.5 font-sans text-sm text-stone-700 placeholder-stone-300 focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors duration-200 resize-none"></textarea>
+                </div>
+
+                <!-- Payment note -->
+                <p class="font-sans text-xs text-stone-400 leading-relaxed">
+                    Payment is handled after we connect — mostly cash. We'll sort out all the details together.
+                </p>
 
                 <!-- Submit -->
                 <button type="submit"
@@ -770,15 +889,14 @@
                         <line x1="22" y1="2" x2="11" y2="13"/>
                         <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                     </svg>
-                    Send Message
+                    Send Booking Request
                 </button>
             </div>
         </form>
 
         <!-- Fine print -->
         <p class="reveal reveal-delay-5 font-sans text-xs text-stone-400 leading-relaxed text-center mt-6">
-            Available for private sessions · Retreats · Festival bookings<br>
-            <span class="text-earth/70">Response within 24 hours</span>
+            Available any time · I travel to you · Response within 24 hours
         </p>
     </div>
 </section>
@@ -814,6 +932,26 @@
     const nav = document.getElementById('site-nav');
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── Session type toggle ──
+    const sessionRadios = document.querySelectorAll('input[name="session_type"]');
+    const privateFields = document.getElementById('private-fields');
+    const eventFields   = document.getElementById('event-fields');
+    const allCards      = document.querySelectorAll('.session-type-card');
+
+    sessionRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            allCards.forEach(c => c.classList.remove('selected'));
+            radio.closest('label').querySelector('.session-type-card').classList.add('selected');
+            if (radio.value === 'Private Massage') {
+                privateFields.classList.remove('hidden');
+                eventFields.classList.add('hidden');
+            } else {
+                privateFields.classList.add('hidden');
+                eventFields.classList.remove('hidden');
+            }
+        });
     });
 
     // ── Mobile menu toggle ──
