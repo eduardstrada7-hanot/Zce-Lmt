@@ -154,6 +154,80 @@
             display: flex;
         }
 
+        /* ── Book Now dropdown ── */
+        .book-dropdown { position: relative; }
+        .book-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            min-width: 220px;
+            background: #fff;
+            border: 1px solid rgba(168,196,180,0.35);
+            border-radius: 16px;
+            box-shadow: 0 12px 32px rgba(45,90,74,0.14);
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-6px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 100;
+        }
+        .book-dropdown:hover .book-dropdown-menu,
+        .book-dropdown:focus-within .book-dropdown-menu {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        .book-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8125rem;
+            color: #2c2c2c;
+            text-decoration: none;
+            transition: background 0.15s ease, color 0.15s ease;
+            white-space: nowrap;
+        }
+        .book-dropdown-menu a:hover {
+            background: #dceee6;
+            color: #2d5a4a;
+        }
+        .book-dropdown-menu a .drop-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #dceee6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .book-dropdown-menu a:hover .drop-icon {
+            background: #4a8c7a;
+        }
+        .book-dropdown-menu a:hover .drop-icon svg {
+            stroke: #fff;
+        }
+        /* Arrow caret on the dropdown */
+        .book-dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            right: 20px;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-left: 1px solid rgba(168,196,180,0.35);
+            border-top: 1px solid rgba(168,196,180,0.35);
+            transform: rotate(45deg);
+        }
+
         /* ── Session type card toggle ── */
         .session-type-card.selected {
             border-color: #4a8c7a;
@@ -183,7 +257,49 @@
             <a href="#modalities" class="text-forest/70 hover:text-forest transition-colors duration-200 cursor-pointer">Modalities</a>
             <a href="#events"     class="text-forest/70 hover:text-forest transition-colors duration-200 cursor-pointer">Events</a>
             <a href="#greenshire-booking" class="text-forest/70 hover:text-forest transition-colors duration-200 cursor-pointer">Greenshire</a>
-            <a href="#contact" class="bg-forest text-linen px-5 py-2 rounded-full hover:bg-forest-md transition-colors duration-200 cursor-pointer font-medium tracking-wide">Book a Massage or Event</a>
+
+            <!-- Book Now dropdown -->
+            <div class="book-dropdown">
+                <button class="bg-forest text-linen px-5 py-2 rounded-full hover:bg-forest-md transition-colors duration-200 cursor-pointer font-medium tracking-wide font-sans text-sm flex items-center gap-1.5">
+                    Book Now
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="book-dropdown-menu">
+                    <!-- Private Massage -->
+                    <a href="#contact" onclick="setSessionType('Private Massage')">
+                        <span class="drop-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                                <path d="M3 12 Q7 7 12 12 Q17 17 21 12"/>
+                                <path d="M3 16 Q7 11 12 16 Q17 21 21 16" opacity="0.5"/>
+                            </svg>
+                        </span>
+                        Book a Private Massage
+                    </a>
+                    <!-- Event -->
+                    <a href="#contact" onclick="setSessionType('Day Event')">
+                        <span class="drop-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 2 l2.5 7.5 h7.5 l-6 4.5 2 7-6-4.5-6 4.5 2-7-6-4.5h7.5Z"/>
+                            </svg>
+                        </span>
+                        Book for an Event
+                    </a>
+                    <!-- Greenshire -->
+                    <a href="#greenshire-booking">
+                        <span class="drop-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2d5a4a" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                                <path d="M3 19 Q6 10 12 8 Q18 10 21 19"/>
+                                <path d="M7 19 Q9.5 13.5 12 12.5 Q14.5 13.5 17 19"/>
+                                <line x1="12" y1="8" x2="12" y2="4"/>
+                                <path d="M9.5 6 Q12 3 14.5 6"/>
+                            </svg>
+                        </span>
+                        Book at Greenshire
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- Mobile hamburger -->
@@ -202,7 +318,14 @@
         <a href="#about"      class="text-forest/80 hover:text-forest cursor-pointer" onclick="closeMobileMenu()">About</a>
         <a href="#modalities" class="text-forest/80 hover:text-forest cursor-pointer" onclick="closeMobileMenu()">Modalities</a>
         <a href="#events"     class="text-forest/80 hover:text-forest cursor-pointer" onclick="closeMobileMenu()">Events</a>
-        <a href="#contact"    class="bg-forest text-linen px-8 py-3 rounded-full font-medium cursor-pointer" onclick="closeMobileMenu()">Book a Massage or Event</a>
+        <div class="flex flex-col items-center gap-2 w-full px-8">
+            <a href="#contact" onclick="setSessionType('Private Massage'); closeMobileMenu()"
+               class="w-full text-center bg-forest text-linen px-6 py-3 rounded-full font-medium cursor-pointer text-sm">Book a Private Massage</a>
+            <a href="#contact" onclick="setSessionType('Day Event'); closeMobileMenu()"
+               class="w-full text-center border border-forest/30 text-forest px-6 py-3 rounded-full font-medium cursor-pointer text-sm">Book for an Event</a>
+            <a href="#greenshire-booking" onclick="closeMobileMenu()"
+               class="w-full text-center border border-forest/30 text-forest px-6 py-3 rounded-full font-medium cursor-pointer text-sm">Book at Greenshire</a>
+        </div>
     </div>
 </nav>
 
@@ -1192,6 +1315,15 @@
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 50);
     });
+
+    // ── Nav "Book Now" dropdown → pre-select session type ──
+    function setSessionType(type) {
+        const radio = document.querySelector(`input[name="session_type"][value="${type}"]`);
+        if (radio) {
+            radio.checked = true;
+            radio.dispatchEvent(new Event('change'));
+        }
+    }
 
     // ── Session type toggle ──
     const sessionRadios = document.querySelectorAll('input[name="session_type"]');
