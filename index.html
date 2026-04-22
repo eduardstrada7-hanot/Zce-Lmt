@@ -90,9 +90,41 @@
             * { transition-duration: 0ms !important; animation-duration: 0ms !important; }
         }
 
-        /* ── Hero botanical SVG ── */
+        /* ── Hero photo background ── */
         .hero-bg {
-            background-color: #1e3d32;
+            background-image: url('IMG_3698.jpg');
+            background-size: cover;
+            background-position: center 30%;
+        }
+
+        /* ── Logo mark ── */
+        .logo-mark {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid rgba(45,90,74,0.35);
+            box-shadow: 0 2px 8px rgba(45,90,74,0.18);
+        }
+        .logo-mark img.tree {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+        .logo-mark img.pentagram {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0.13;
+            mix-blend-mode: multiply;
         }
 
         /* ── Decorative quote marks ── */
@@ -138,7 +170,12 @@
 <!-- ─────────────────────────────────────────── NAV ───── -->
 <nav id="site-nav" class="fixed top-0 left-0 right-0 z-50 bg-linen/90 backdrop-blur-md border-b border-sage/20 py-4">
     <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <a href="#hero" class="font-serif text-xl text-forest tracking-wide cursor-pointer">Eddie Zce</a>
+        <a href="#hero" class="cursor-pointer flex items-center" aria-label="Eddie Zce — Home">
+            <div class="logo-mark">
+                <img src="IMG_3819.jpg" alt="" class="tree">
+                <img src="IMG_3828.jpg" alt="" class="pentagram">
+            </div>
+        </a>
 
         <!-- Desktop links -->
         <div class="hidden md:flex items-center gap-7 font-sans text-sm">
@@ -172,6 +209,9 @@
 
 <!-- ─────────────────────────────────────────── HERO ───── -->
 <section id="hero" class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+
+    <!-- Full dark overlay over photo -->
+    <div class="absolute inset-0" style="background: rgba(20,38,30,0.82);" aria-hidden="true"></div>
 
     <!-- Botanical SVG background -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -975,8 +1015,11 @@
 
 
 <!-- ──────────────────────── GREENSHIRE BOOKING ───── -->
-<section id="greenshire-booking" class="py-28 md:py-36" style="background-color: #f0ede8;">
-    <div class="max-w-2xl mx-auto px-6">
+<section id="greenshire-booking" class="py-28 md:py-36 relative overflow-hidden"
+         style="background-image: url('IMG_3697.jpg'); background-size: cover; background-position: center 25%;">
+    <!-- Warm light overlay -->
+    <div class="absolute inset-0" style="background: rgba(247,244,239,0.91);" aria-hidden="true"></div>
+    <div class="max-w-2xl mx-auto px-6 relative z-10">
 
         <!-- Header -->
         <div class="text-center mb-12">
